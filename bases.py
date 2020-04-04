@@ -17,12 +17,18 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+
+    digits = digits[::-1] #Reverses order of the given digits
+    decoded_value = 0
+
+    for exp, digit in enumerate(digits):
+        if digit.isalpha():
+            digit = int(digit, 16) #converts string letters and finds hex value equivalent 
+        else:
+            digit = int(digit)
+        decoded_value = digit * (base ** exp) 
+         
+    return decoded_value
 
 
 def encode(number, base):
@@ -78,4 +84,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    decode("A5",2)
